@@ -1,25 +1,95 @@
 import React from 'react';
+import axios from 'axios';
+import {Redirect, Link} from 'react-router-dom';
+import {token$, updateToken} from './store';
+import jwt from 'jsonwebtoken';
 
 class Login extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+          email: '',
+          password: '',
+          error: false,
+          token: token$.value,
+        };
+    
+      }
+    
+      componentDidMount() {
+        this.subscription = token$.subscribe(token => {
+            console.log(token);
+          this.setState({token: token});
+        }); 
+      }
+    
+      componentWillUnmount() {
+        this.subscription.unsubscribe();
+      }
+    
+      emailHandler = (e) => {
+        this.setState({email: e.target.value});
+      }
+    
+      passwordHandler = (e) => {
+        this.setState({password: e.target.value});
+      }
+    
+      onSubmit = (e) => {
+        e.preventDefault();
+        let loginData = {
+          email: this.state.email,
+          password: this.state.password,
+        };
+    
+        axios.post('http://3.120.96.16:3002/auth', loginData)
+          .then(response => {
+            this.setState({error: false});
+            const decoded = jwt.decode(response.data.token);
+            console.log(decoded); 
+            updateToken(response.data.token);
+          })
+          .catch(err => {
+            this.setState({error: true});
+            console.error(err);
+          });
+      }
+    
     render() {
+        if (this.state.token) {
+            return <Redirect to='/' />; 
+        }
+
+        let errorMessage = null;
+        if (this.state.error) {
+            errorMessage = 'Invalid login. Try again or Register';
+        }
+
         return (
             <div>
-                <form>
-                    <h3>Sign In</h3>
+                <form onSubmit={this.onSubmit} className='login-page'>
+                    <h2>Todos</h2>
+                    <p className='error-message'>{errorMessage}</p>
                     <input
                         type='email'
                         placeholder='E-mail'
+                        value={this.state.email}
+                        onChange={this.emailHandler}
                     />
                     <input
                         type='password'
                         placeholder='Password'
+                        value={this.state.password}
+                        onChange={this.passwordHandler}
                     />
                     <input
                         type='submit'
-                        value='Sign In'
+                        value='Log In'
                     />
                 </form>
-                {/*länkt till register! och vica versa*/}
+                <br></br>
+                <Link to='/register' className='links'>Register</Link>
             </div>
         )
     }

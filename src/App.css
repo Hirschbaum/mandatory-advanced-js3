@@ -2,24 +2,124 @@
   text-align: center;
 }
 
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+h2 {
+  letter-spacing: 0.05em;
+  font-family: 'Permanent Marker', cursive;
+}
+
 input[type=text], input[type=email], input[type=password] {
-  width: 40%;
+  width: 35%;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 0.3rem;
-  margin: 1% 35%;
-  padding: 1%;
+  margin: 1%;
+  padding: 1.5%;
   letter-spacing: 0.1em;
+  font-family: 'Quicksand', sans-serif ;
 }
 
 input[type=submit] {
-  padding: 1% 2%;
-  border: 1px solid rgb(87, 85, 85);
+  padding: 1.5% 2%;
+  border: 1px solid rgb(24, 131, 104);
   border-radius: 0.3rem;
   color: #fff;
-  background-color:rgb(87, 85, 85);
+  background-color:rgb(24, 131, 104);
   letter-spacing: 0.15em;
-  font-weight: 800;
-  margin-top: 1%;
+  font-weight: 400;
+  margin-top: 2%;
+  font-family: 'Quicksand', sans-serif ;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.login-page > input[type=email], .login-page > input[type=password] {
+  width: 35vw;
+  align-self: center;
+  letter-spacing: 0.15em;
+  font-family: 'Quicksand', sans-serif ;
+}
+
+.login-page > input[type=submit] {
+  width: 15vw;
+  align-self: center;
+  font-family: 'Quicksand', sans-serif ;
+}
+
+.links {
+  letter-spacing: 0.05em;
+  color: rgb(28, 196, 247);
+}
+
+.error-message {
+  color: rgb(230, 13, 13);
+  letter-spacing: 0.05em;
+}
+
+.header-todos {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.todos-page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  text-align: left;
+  font-size: smaller;
+  margin-top: 2%;
+  margin-left: 21%;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  padding: 3.5%;
+  width: 40vw;
+  background-color: lightyellow;
+}
+
+.logout-button {
+  border: none;
+  color: rgb(24, 131, 104);
+  background-color: #fff;
+  letter-spacing: 0.15em;
+  font-weight: 400;
+  width: 12vw;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+}
+
+li {
+ display: flex;
+ justify-content: space-between;
+ padding-left: 2%;
+ letter-spacing: 0.05em; 
+}
+
+.delete-todo {
+  border: none;
+  color: rgb(24, 131, 104);
+  font-weight: 900;
+  font-size: 1em;
+  background-color: lightyellow;
+}
+
+.delete-todo:hover {
+  cursor: pointer;
+  color: rgb(231, 79, 79);
 }
