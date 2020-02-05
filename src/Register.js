@@ -13,7 +13,7 @@ class Register extends React.Component {
             redirectToLogin: false,
         }
     }
-    
+
     emailHandler = (e) => {
         this.setState({ email: e.target.value })
     }
@@ -33,7 +33,7 @@ class Register extends React.Component {
         axios.post('http://3.120.96.16:3002/register', registerData)
             .then(response => {
                 console.log('yeap', response.data.email);
-                this.setState({redirectToLogin: true});
+                this.setState({ redirectToLogin: true });
             })
             .catch(err => {
                 this.setState({ error: true });
@@ -50,14 +50,15 @@ class Register extends React.Component {
         let errorMessage = null;
         if (this.state.error) {
             errorMessage = 'Error by registering';
-        } 
+        }
 
         return (
             <div>
+                
+                <h2>Todos</h2>
                 <p className='error-message'>{errorMessage}</p>
-                <h3>Register</h3>
 
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} className='register-page'>
                     <input
                         type='email'
                         onChange={this.emailHandler}
@@ -76,7 +77,15 @@ class Register extends React.Component {
                     />
                 </form>
                 <br></br>
-                <Link to='/login' className='links'>Login</Link>
+                <p>
+                    <span>
+                        Already have an account? 
+                    </span>
+                    <span>
+                        <Link to='/login' className='links'> Log In Here.</Link>
+                    </span>
+                </p>
+
             </div>
         )
     }

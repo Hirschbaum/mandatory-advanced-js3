@@ -63,7 +63,7 @@ class Login extends React.Component {
 
         let errorMessage = null;
         if (this.state.error) {
-            errorMessage = 'Invalid login. Try again or Register';
+            errorMessage = 'Invalid login. Try again or create an account.';
         }
 
         return (
@@ -89,7 +89,7 @@ class Login extends React.Component {
                     />
                 </form>
                 <br></br>
-                <Link to='/register' className='links'>Register</Link>
+                <Link to='/register' className='links'>Create Account</Link>
             </div>
         )
     }

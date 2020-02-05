@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  height: 100vh;
+  background: rgb(237,150,28);
+  background: linear-gradient(129deg, rgba(237,150,28,1) 0%, rgba(235,231,112,1) 30%, rgba(250,250,211,1) 61%, rgba(246,246,227,1) 78%, rgba(255,255,255,1) 100%);
 }
 
 body {
@@ -7,49 +10,70 @@ body {
 }
 
 h2 {
+  margin-top: 0;
+  padding: 3% 0 0 0;
   letter-spacing: 0.05em;
   font-family: 'Permanent Marker', cursive;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type=email], input[type=password] {
   width: 35%;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 0.3rem;
   margin: 1%;
-  padding: 1.5%;
+  padding: 2%;
+  letter-spacing: 0.1em;
+  font-size: 1em;
+  font-family: 'Quicksand', sans-serif ;
+}
+
+input[type=text] {
+  width: 35%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  margin-right: 2%;
+  padding: 2%;
+  font-size: 1em;
   letter-spacing: 0.1em;
   font-family: 'Quicksand', sans-serif ;
 }
 
 input[type=submit] {
-  padding: 1.5% 2%;
-  border: 1px solid rgb(24, 131, 104);
+  padding: 2% 1%;
+  border: 1px solid rgb(237,150,28);
   border-radius: 0.3rem;
   color: #fff;
-  background-color:rgb(24, 131, 104);
+  background-color:rgb(237,150,28);
   letter-spacing: 0.15em;
   font-weight: 400;
+  font-size: 1em;
   margin-top: 2%;
   font-family: 'Quicksand', sans-serif ;
 }
 
-.login-page {
+input[type=submit]:hover {
+  cursor: pointer;
+}
+
+.register-page, .login-page {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 }
 
-.login-page > input[type=email], .login-page > input[type=password] {
-  width: 35vw;
+input[type=email], input[type=password] {
+  width: 42vw;
   align-self: center;
   letter-spacing: 0.15em;
   font-family: 'Quicksand', sans-serif ;
 }
 
-.login-page > input[type=submit] {
-  width: 15vw;
+.register-page> input[type=submit], .login-page > input[type=submit] {
+  width: 22vw;
   align-self: center;
   font-family: 'Quicksand', sans-serif ;
 }
@@ -57,6 +81,11 @@ input[type=submit] {
 .links {
   letter-spacing: 0.05em;
   color: rgb(28, 196, 247);
+  text-decoration: solid;
+}
+
+.links:hover {
+  text-decoration: underline;
 }
 
 .error-message {
@@ -64,9 +93,18 @@ input[type=submit] {
   letter-spacing: 0.05em;
 }
 
+header {
+  padding-bottom: 3%;
+}
+
 .header-todos {
   display: flex;
   justify-content: space-evenly;
+}
+
+.todo-add {
+  background-color: transparent;
+  box-sizing: border-box;
 }
 
 .todos-page {
@@ -88,16 +126,13 @@ li {
   border-radius: 0.3rem;
   padding: 3.5%;
   width: 40vw;
-  background-color: lightyellow;
+  background-color: rgb(252, 252, 237);
 }
 
 .logout-button {
-  border: none;
-  color: rgb(24, 131, 104);
-  background-color: #fff;
-  letter-spacing: 0.15em;
-  font-weight: 400;
-  width: 12vw;
+  border: transparent;
+  background-color: transparent;
+  /*color: rgb(24, 131, 104);*/
 }
 
 .logout-button:hover {
@@ -108,15 +143,16 @@ li {
  display: flex;
  justify-content: space-between;
  padding-left: 2%;
- letter-spacing: 0.05em; 
+ letter-spacing: 0.05em;
+ font-size: 1em;
 }
 
 .delete-todo {
   border: none;
-  color: rgb(24, 131, 104);
+  color: rgb(237,150,28);
   font-weight: 900;
   font-size: 1em;
-  background-color: lightyellow;
+  background-color: rgb(252, 252, 237);
 }
 
 .delete-todo:hover {

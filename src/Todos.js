@@ -2,7 +2,7 @@ import React from 'react';
 import { updateToken, token$ } from './store';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import MaterialIcon, {colorPalette} from 'material-icons-react';
+import MaterialIcon, { colorPalette } from 'material-icons-react';
 
 class Todos extends React.Component {
     constructor(props) {
@@ -73,39 +73,53 @@ class Todos extends React.Component {
     }
 
     render() {
+
         if (!this.state.token) return <Redirect to='/login' />
         console.log(this.state.todos);
         return (
-            <div>
-                <header className='header-todos'>
-                    <h2>Todos</h2>
-                    <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app'/></button>
+            <div className='todo-container'>
+                <header>
+                    <div className='header-todos'>
+                        <h2>Todos</h2>
+                        <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app' color={colorPalette.amber._900} size='medium' /></button>
+                    </div>
+
                 </header>
+
                 <div className='todos-page'>
-                    <form onSubmit={this.addTodo} className='form-todo'>
-                        <input
-                            type='text'
-                            placeholder='to do...'
-                            value={this.state.todoInput}
-                            onChange={this.onChange} />
-                        <input type='submit' value='+' className='add-button' />
-                    </form>
-                    <ul>
-                        {this.state.todos.map(x => {
-                            return (
-                                <li key={x.id}>
-                                    <span>{x.content}</span>
-                                    <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
-                                        <MaterialIcon icon='check' />
-                                        {/*<button
+                    <div>
+                        <form onSubmit={this.addTodo} className='form-todo'>
+                            <input
+                                type='text'
+                                placeholder='to do...'
+                                value={this.state.todoInput}
+                                onChange={this.onChange}
+                            />
+                            {/*<button type='submit' className='todo-add'>
+                                <MaterialIcon icon='add_box' color={colorPalette.amber._900} size='medium' />
+                            </button>*/}
+                            <input type='submit' value='Add' className='add-button' />
+                        </form>
+                    </div>
+
+                    <div className='todo-box'>
+                        <ul>
+                            {this.state.todos.map(x => {
+                                return (
+                                    <li key={x.id}>
+                                        <span>{x.content}</span>
+                                        <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
+                                            <MaterialIcon icon='check' color={colorPalette.amber._700} />
+                                            {/*<button
                                             className='delete-todo'
                                             onClick={() => this.deleteTodo(x.id)}> X
                                         </button>*/}
-                                    </span>
-                                </li>
-                            )
-                        })}
-                    </ul>
+                                        </span>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
                 </div>
             </div>
         )
