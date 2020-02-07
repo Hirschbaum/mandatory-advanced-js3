@@ -14,6 +14,7 @@ h2 {
   padding: 3% 0 0 0;
   letter-spacing: 0.05em;
   font-family: 'Permanent Marker', cursive;
+  font-size: 2.4em;
 }
 
 input[type=email], input[type=password] {
@@ -93,21 +94,12 @@ input[type=email], input[type=password] {
   letter-spacing: 0.05em;
 }
 
-header {
-  padding-bottom: 3%;
-}
-
-.header-todos {
+.todos-header {
   display: flex;
   justify-content: space-evenly;
 }
 
-.todo-add {
-  background-color: transparent;
-  box-sizing: border-box;
-}
-
-.todos-page {
+.todos-main {
   display: flex;
   justify-content: center;
   flex-direction: column;

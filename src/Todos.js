@@ -3,6 +3,7 @@ import { updateToken, token$ } from './store';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import MaterialIcon, { colorPalette } from 'material-icons-react';
+import jwt from 'jsonwebtoken';
 
 class Todos extends React.Component {
     constructor(props) {
@@ -12,12 +13,16 @@ class Todos extends React.Component {
             token: token$.value,
             todos: [],
             todoInput: '',
+            usermail: '',
         }
     }
 
     componentDidMount() {
         token$.subscribe(token => {
             this.setState({ token: token });
+            const decoded = jwt.decode(this.state.token);
+            console.log(decoded);
+            this.setState({ usermail: decoded.email })
         })
 
         axios.get('http://3.120.96.16:3002/todos', {
@@ -77,32 +82,27 @@ class Todos extends React.Component {
         if (!this.state.token) return <Redirect to='/login' />
         console.log(this.state.todos);
         return (
-            <div className='todo-container'>
-                <header>
-                    <div className='header-todos'>
-                        <h2>Todos</h2>
-                        <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app' color={colorPalette.amber._900} size='medium' /></button>
-                    </div>
+            <div className='todos-container'>
 
-                </header>
+                <div className='todos-header'>
+                    <h2>Todos</h2>
+                    <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app' color={colorPalette.amber._900} size='medium' /></button>
+                </div>
+                <p>{this.state.usermail}</p>
 
-                <div className='todos-page'>
-                    <div>
-                        <form onSubmit={this.addTodo} className='form-todo'>
-                            <input
-                                type='text'
-                                placeholder='to do...'
-                                value={this.state.todoInput}
-                                onChange={this.onChange}
-                            />
-                            {/*<button type='submit' className='todo-add'>
-                                <MaterialIcon icon='add_box' color={colorPalette.amber._900} size='medium' />
-                            </button>*/}
-                            <input type='submit' value='Add' className='add-button' />
-                        </form>
-                    </div>
+                <div className='todos-main'>
 
-                    <div className='todo-box'>
+                    <form onSubmit={this.addTodo} className='todos-form'>
+                        <input
+                            type='text'
+                            placeholder='to do...'
+                            value={this.state.todoInput}
+                            onChange={this.onChange}
+                        />
+                        <input type='submit' value='Add' className='add-button' />
+                    </form>
+
+                    <div className='todos-list'>
                         <ul>
                             {this.state.todos.map(x => {
                                 return (
@@ -110,10 +110,6 @@ class Todos extends React.Component {
                                         <span>{x.content}</span>
                                         <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
                                             <MaterialIcon icon='check' color={colorPalette.amber._700} />
-                                            {/*<button
-                                            className='delete-todo'
-                                            onClick={() => this.deleteTodo(x.id)}> X
-                                        </button>*/}
                                         </span>
                                     </li>
                                 )
