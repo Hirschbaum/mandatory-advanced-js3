@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import {Redirect, Link} from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import {token$, updateToken} from './store';
 import jwt from 'jsonwebtoken';
+import Header from './Header';
 
 class Login extends React.Component {
     constructor(props) {
@@ -68,12 +69,13 @@ class Login extends React.Component {
 
         return (
             <div>
+              <Header />
                 <form onSubmit={this.onSubmit} className='login-page'>
-                    <h2>Todos</h2>
+                   
                     <p className='error-message'>{errorMessage}</p>
                     <input
                         type='email'
-                        placeholder='E-mail'
+                        placeholder='Email'
                         value={this.state.email}
                         onChange={this.emailHandler}
                     />
@@ -88,8 +90,6 @@ class Login extends React.Component {
                         value='Log In'
                     />
                 </form>
-                <br></br>
-                <Link to='/register' className='links'>Create Account</Link>
             </div>
         )
     }

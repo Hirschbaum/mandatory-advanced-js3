@@ -1,38 +1,94 @@
 .App {
   text-align: center;
   height: 100vh;
-  background: rgb(237,150,28);
-  background: linear-gradient(129deg, rgba(237,150,28,1) 0%, rgba(235,231,112,1) 30%, rgba(250,250,211,1) 61%, rgba(246,246,227,1) 78%, rgba(255,255,255,1) 100%);
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0 auto;
 }
 
 h2 {
-  margin-top: 0;
+  margin: 0;
   padding: 3% 0 0 0;
   letter-spacing: 0.05em;
   font-family: 'Permanent Marker', cursive;
   font-size: 2.4em;
 }
 
+/*---------- HEADER FOR REGISTER AND LOGIN ---------------*/
+.header-register-login {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  height: 20%;
+  margin-top: 5%;
+}
+
+.header-logo-container {
+  display: flex;
+}
+
+.header-logo-container  >h3 {
+  margin: 0 0 0 4%;
+  align-self: flex-end;
+  color: #551A8B;
+}
+
+.header-logo {
+  border: 1px solid #fff;
+  color: #fff;
+  background: rgb(237,150,28);
+  background: linear-gradient(129deg, rgba(237,150,28,1) 34%, rgba(235,231,112,1) 80%, rgba(250,250,211,1) 92%, rgba(246,246,227,1) 100%, rgba(255,255,255,1) 100%);
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  font-size: 1.1em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  width: 2.3em;
+  padding: 2% 0.9%;
+}
+
+.header-links-container {
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header-links {
+  text-decoration: none;
+  padding: 2% 0;
+  align-self: flex-end;
+}
+
+.header-links:hover {
+  color: rgb(237,150,28);
+}
+
+.right {
+  margin-left: 10%;
+}
+
+/*------------ LOGIN AND REGISTER FORM ----------------*/
 input[type=email], input[type=password] {
   width: 35%;
   display: inline-block;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 0.3rem;
-  margin: 1%;
+  margin: 3% 1% 1% 1%;
   padding: 2%;
   letter-spacing: 0.1em;
   font-size: 1em;
-  font-family: 'Quicksand', sans-serif ;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input[type=password] {
+  margin-bottom: 5%;
 }
 
 input[type=text] {
-  width: 35%;
-  display: inline-block;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 0.3rem;
@@ -40,24 +96,25 @@ input[type=text] {
   padding: 2%;
   font-size: 1em;
   letter-spacing: 0.1em;
-  font-family: 'Quicksand', sans-serif ;
+  font-family: 'Montserrat', sans-serif;
 }
 
 input[type=submit] {
-  padding: 2% 1%;
-  border: 1px solid rgb(237,150,28);
+  padding: 2% 0;
+  border: 1px solid #fff;
   border-radius: 0.3rem;
   color: #fff;
-  background-color:rgb(237,150,28);
+  background: rgb(237,150,28);
   letter-spacing: 0.15em;
   font-weight: 400;
   font-size: 1em;
-  margin-top: 2%;
-  font-family: 'Quicksand', sans-serif ;
+  font-family: 'Montserrat', sans-serif;
 }
 
 input[type=submit]:hover {
   cursor: pointer;
+  background: rgb(237,150,28);
+  background: linear-gradient(129deg, rgba(237,150,28,1) 34%, rgba(235,231,112,1) 84%, rgba(250,250,211,1) 100%, rgba(246,246,227,1) 100%, rgba(255,255,255,1) 100%);
 }
 
 .register-page, .login-page {
@@ -81,12 +138,12 @@ input[type=email], input[type=password] {
 
 .links {
   letter-spacing: 0.05em;
-  color: rgb(28, 196, 247);
+  color: rgb(9, 122, 156);
   text-decoration: solid;
 }
 
 .links:hover {
-  text-decoration: underline;
+  color:rgb(237,150,28);
 }
 
 .error-message {
@@ -94,31 +151,48 @@ input[type=email], input[type=password] {
   letter-spacing: 0.05em;
 }
 
-.todos-header {
+/*----------------------- TODOS PAGE ---------------------------*/
+.todos-container {
   display: flex;
-  justify-content: space-evenly;
-}
-
-.todos-main {
-  display: flex;
-  justify-content: center;
   flex-direction: column;
+  flex-wrap: nowrap;
+  margin-top: 0.5%;
 }
 
-ul {
-  list-style-type: none;
+.header-firstrow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
-li {
-  text-align: left;
-  font-size: smaller;
-  margin-top: 2%;
-  margin-left: 21%;
-  border: 1px solid #ddd;
-  border-radius: 0.3rem;
-  padding: 3.5%;
-  width: 40vw;
-  background-color: rgb(252, 252, 237);
+/*------TODOS LOGO ON THE LEFT-------*/
+.todos-logo-container, .logout-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 2%;
+}
+
+.todos-logo {
+  border: 1px solid #fff;
+  color: #fff;
+  background: rgb(237,150,28);
+  background: linear-gradient(129deg, rgba(237,150,28,1) 34%, rgba(235,231,112,1) 80%, rgba(250,250,211,1) 92%, rgba(246,246,227,1) 100%, rgba(255,255,255,1) 100%);
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  font-size: 1.1em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  width: 2.3em;
+  height: 1.8em;
+  line-height: 1.8em;
+  padding: 2% 0.9%;
+}
+
+/*------------ LOGOUT AND EMAIL ON THE RIGHT------------*/
+.user-email {
+  color: rgb(136, 135, 135);
 }
 
 .logout-button {
@@ -131,12 +205,56 @@ li {
   cursor: pointer;
 }
 
+/*------------- ADD-TODO-FIELD -------------*/
+.todos-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: left;
+}
+
+.todos-input {
+  height: 3em;
+  width: 48vw;
+}
+
+.todos-add-button {
+  height: 3em;
+  width: 10vw;
+  font-size: 3em;
+}
+
+/*------------ TODOS LIST WITH THE INPUT INSIDE---------------*/
+.todos-main {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin: 0;
+}
+
+ul {
+  list-style-type: none; 
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
 li {
- display: flex;
- justify-content: space-between;
- padding-left: 2%;
- letter-spacing: 0.05em;
- font-size: 1em;
+  align-self: left;
+  box-sizing: border-box;
+  width: 60vw;
+  text-align: left;
+  font-size: smaller;
+  margin-top: 2%;
+  border: 1px solid #ddd;
+  border-radius: 0.3rem;
+  padding: 3.5%;
+  background-color: rgb(252, 252, 237);
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2%;
+  letter-spacing: 0.05em;
+  font-size: 1em;
 }
 
 .delete-todo {

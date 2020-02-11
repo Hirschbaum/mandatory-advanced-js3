@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import Header from './Header';
 
 class Register extends React.Component {
     constructor(props) {
@@ -54,11 +55,10 @@ class Register extends React.Component {
 
         return (
             <div>
-                
-                <h2>Todos</h2>
-                <p className='error-message'>{errorMessage}</p>
+                <Header />
 
                 <form onSubmit={this.onSubmit} className='register-page'>
+                    <p className='error-message'>{errorMessage}</p>
                     <input
                         type='email'
                         onChange={this.emailHandler}
@@ -76,16 +76,6 @@ class Register extends React.Component {
                         value='Register'
                     />
                 </form>
-                <br></br>
-                <p>
-                    <span>
-                        Already have an account? 
-                    </span>
-                    <span>
-                        <Link to='/login' className='links'> Log In Here.</Link>
-                    </span>
-                </p>
-
             </div>
         )
     }

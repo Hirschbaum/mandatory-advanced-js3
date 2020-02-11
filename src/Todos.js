@@ -83,39 +83,53 @@ class Todos extends React.Component {
         console.log(this.state.todos);
         return (
             <div className='todos-container'>
+                <header>
+                    <div className="header-firstrow">
 
-                <div className='todos-header'>
-                    <h2>Todos</h2>
-                    <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app' color={colorPalette.amber._900} size='medium' /></button>
-                </div>
-                <p>{this.state.usermail}</p>
+                        <div className='todos-logo-container'>
+                            <div className="todos-logo"> do</div>
+                            <h3>todos</h3>
+                        </div>
+
+                        <div className="logout-container">
+                            <p className='user-email'>{this.state.usermail}</p>
+                            <button onClick={this.logOut} className='logout-button'><MaterialIcon icon='exit_to_app' color={colorPalette.amber._900} size='medium' /></button>
+                        </div>
+                    </div>
+
+                </header>
+
 
                 <div className='todos-main'>
 
-                    <form onSubmit={this.addTodo} className='todos-form'>
-                        <input
-                            type='text'
-                            placeholder='to do...'
-                            value={this.state.todoInput}
-                            onChange={this.onChange}
-                        />
-                        <input type='submit' value='Add' className='add-button' />
-                    </form>
+                    <ul className='todos-list'>
+                        <form onSubmit={this.addTodo} className='todos-form'>
+                            <input
+                                className='todos-input'
+                                type='text'
+                                placeholder='to do...'
+                                value={this.state.todoInput}
+                                onChange={this.onChange}
+                            />
+                            <input 
+                                type='submit' 
+                                value='Add' 
+                                className='todos-add-button'
+                            />
+                        </form>
+                        
+                        {this.state.todos.map(x => {
+                            return (
+                                <li key={x.id}>
+                                    <span>{x.content}</span>
+                                    <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
+                                        <MaterialIcon icon='check' color={colorPalette.amber._700} />
+                                    </span>
+                                </li>
+                            )
+                        })}
+                    </ul>
 
-                    <div className='todos-list'>
-                        <ul>
-                            {this.state.todos.map(x => {
-                                return (
-                                    <li key={x.id}>
-                                        <span>{x.content}</span>
-                                        <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
-                                            <MaterialIcon icon='check' color={colorPalette.amber._700} />
-                                        </span>
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
                 </div>
             </div>
         )
