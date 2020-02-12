@@ -15,15 +15,20 @@ class Todos extends React.Component {
             todoInput: '',
             usermail: '',
         }
+
+        this.subscription = null;
     }
 
     componentDidMount() {
-        token$.subscribe(token => {
-            this.setState({ token: token });
-            const decoded = jwt.decode(this.state.token);
+        
+        this.subscription = token$.subscribe(token => {
+            if (token === null) {
+                this.setState({token: token}); 
+            } else {
+            const decoded = jwt.decode(token);
             console.log(decoded);
-            this.setState({ usermail: decoded.email })
-        })
+            this.setState({ usermail: decoded.email, token: token });
+        }})
 
         axios.get('http://3.120.96.16:3002/todos', {
             headers: {
@@ -31,13 +36,17 @@ class Todos extends React.Component {
             }
         })
             .then(response => {
-                console.log(response.data.todos);
+                //console.log(response.data.todos);
                 this.setState({ todos: response.data.todos }) //response is an array!
             })
             .catch(err => {
                 console.log('Error: GET todos', err);
                 updateToken(null)
             })
+    }
+
+    componentWillUnmount() {
+        this.subscription.unsubscribe();
     }
 
     addTodo = () => {
@@ -80,7 +89,7 @@ class Todos extends React.Component {
     render() {
 
         if (!this.state.token) return <Redirect to='/login' />
-        console.log(this.state.todos);
+        //console.log(this.state.todos);
         return (
             <div className='todos-container'>
                 <header>

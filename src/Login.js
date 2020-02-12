@@ -25,7 +25,7 @@ class Login extends React.Component {
         }); 
       }
     
-      componentWillUnmount() {
+    componentWillUnmount() {
         this.subscription.unsubscribe();
       }
     
