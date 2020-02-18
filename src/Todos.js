@@ -20,15 +20,16 @@ class Todos extends React.Component {
     }
 
     componentDidMount() {
-        
+
         this.subscription = token$.subscribe(token => {
             if (token === null) {
-                this.setState({token: token}); 
+                this.setState({ token: token });
             } else {
-            const decoded = jwt.decode(token);
-            console.log(decoded);
-            this.setState({ usermail: decoded.email, token: token });
-        }})
+                const decoded = jwt.decode(token);
+                console.log(decoded);
+                this.setState({ usermail: decoded.email, token: token });
+            }
+        })
 
         axios.get('http://3.120.96.16:3002/todos', {
             headers: {
@@ -49,14 +50,15 @@ class Todos extends React.Component {
         this.subscription.unsubscribe();
     }
 
-    addTodo = () => {
+    addTodo = (e) => {
+        e.preventDefault();
         axios.post('http://3.120.96.16:3002/todos', { content: this.state.todoInput }, {
             headers: {
                 Authorization: `Bearer ${this.state.token}`
             }
         })
             .then(response => {
-                this.setState({ todos: [...this.state.todos, response.data.todos] }); //update the state todos with the todos from the server
+                this.setState({ todos: [...this.state.todos, response.data.todo] }); //update the state todos with the TODO from the server
             })
             .catch(err => {
                 console.log('Error: POST of todo', err);
@@ -78,7 +80,7 @@ class Todos extends React.Component {
             })
     }
 
-    logOut = (e) => {
+    logOut = () => {
         updateToken(null);
     }
 
@@ -87,11 +89,13 @@ class Todos extends React.Component {
     }
 
     render() {
-
+        console.log('RENDER', this.state.todos);
         if (!this.state.token) return <Redirect to='/login' />
         //console.log(this.state.todos);
+        
         return (
             <div className='todos-container'>
+
                 <header>
                     <div className="header-firstrow">
 
@@ -110,26 +114,25 @@ class Todos extends React.Component {
 
 
                 <div className='todos-main'>
+                    <form onSubmit={this.addTodo} className='todos-form'>
+                        <input
+                            className='todos-input'
+                            type='text'
+                            placeholder='to do...'
+                            value={this.state.todoInput}
+                            onChange={this.onChange}
+                        />
+                        <input
+                            type='submit'
+                            value='Add'
+                            className='todos-add-button'
+                        />
+                    </form>
 
                     <ul className='todos-list'>
-                        <form onSubmit={this.addTodo} className='todos-form'>
-                            <input
-                                className='todos-input'
-                                type='text'
-                                placeholder='to do...'
-                                value={this.state.todoInput}
-                                onChange={this.onChange}
-                            />
-                            <input 
-                                type='submit' 
-                                value='Add' 
-                                className='todos-add-button'
-                            />
-                        </form>
-                        
                         {this.state.todos.map(x => {
                             return (
-                                <li key={x.id}>
+                                <li key={x.id}> 
                                     <span>{x.content}</span>
                                     <span onClick={() => this.deleteTodo(x.id)} className='delete-todo'>
                                         <MaterialIcon icon='check' color={colorPalette.amber._700} />
